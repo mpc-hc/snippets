@@ -1,4 +1,4 @@
-############ MPC-HC 0.2 - © 2012, vBm <vbm@omertabeyond.com> ###################
+############ MPC-HC 0.3 - © 2012, vBm <vbm@omertabeyond.com> ###################
 #!/usr/bin/perl
 
 use strict;
@@ -8,9 +8,9 @@ use LWP::UserAgent;
 
 #############################################################################
 
-my $version = "0.2";
+my $version = "0.3";
 Xchat::register("MPC-HC API", $version, "Displays MPC-HC Player Info!","");
-IRC::print('Loaded - MPC-HC API - Use: /np :: Setup: Open MPC-HC > Options -> Player -> Web interface -> listen on port');
+Xchat::print('Loaded - MPC-HC API - Use: /np :: Setup: Open MPC-HC > Options -> Player -> Web interface -> listen on port');
 
 #############################################################################
 
@@ -31,7 +31,7 @@ sub mpchc {
 	}
 
 	#Report Back if its Right!
-	if ( $response->is_success ) {
+	else {
 		# Get Results into Variable!
 		my $content = $response->content;
 		my @temptext = split("\n", $content);
@@ -40,11 +40,11 @@ sub mpchc {
 		$mpchcnp =~ s/<[^>]*>//g;
 		$mpchcnp =~ s/^\s+|\s+$//g;
 		$mpchcnp =~ s/&laquo;/\xab/g;
-		# Couldn't find proper way to replace it so i'm using plane hypen as separator ;x
+		# Couldn't find proper way to replace it so i'm using plain hypen as separator ;x
 		$mpchcnp =~ s/&bull;/\x2D/g;
 		$mpchcnp =~ s/&raquo;/\xbb/g;
 		Xchat::command("say $mpchcnp");
-		return Xchat::EAT_ALL;
 	}
+	return Xchat::EAT_ALL;
 }
 #############################################################################
