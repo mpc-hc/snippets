@@ -13,6 +13,7 @@ alias np {
   var %mpchc.port 13579
   .sockclose mpchc.np
   .sockopen mpchc.np %mpchc.host %mpchc.port
+  .sockmark mpchc.np $active
 }
 
 on *:sockopen:mpchc.np:{
@@ -26,6 +27,6 @@ on *:sockread:mpchc.np:{
   sockread %temptext
   if (*<p id="mpchc_np">* iswm %temptext) {
     %temptext = $regsubex(%temptext, /^\s+/, $null)
-    say $nohtml(%temptext)
+    msg $sock($sockname).mark $nohtml(%temptext)
   }
 }
