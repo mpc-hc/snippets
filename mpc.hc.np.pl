@@ -14,11 +14,7 @@ Xchat::print('Loaded - MPC-HC API - Use: /np :: Setup: Open MPC-HC > Options -> 
 
 #############################################################################
 
-Xchat::hook_command("np", "mpchc");
-
-#############################################################################
-
-sub mpchc {
+Xchat::hook_command("np", sub {
 	my $browser		= LWP::UserAgent->new;			# Create A session!
 	my $url			= 'http://localhost:13579/info.html';	# HTML File Here!
 	$browser->timeout(3);						# How Long to Wait!
@@ -46,5 +42,6 @@ sub mpchc {
 		Xchat::command("say $mpchcnp");
 	}
 	return Xchat::EAT_ALL;
-}
+});
+
 #############################################################################
