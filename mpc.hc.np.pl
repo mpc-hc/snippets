@@ -1,5 +1,13 @@
 #!/usr/bin/perl
-############ MPC-HC 0.3 - © 2012-2013, vBm <vbm@omertabeyond.com> ###########
+
+#/**
+#* mpc.hc.np.pl, snippet to display now-playing info for MPC-HC
+#* Released under the terms of MIT license
+#*
+#* https://github.com/mpc-hc/snippets
+#*
+#* Copyright (C) 2012-2013 MPC-HC Team
+#*/
 
 use strict;
 use warnings;

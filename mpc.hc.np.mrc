@@ -1,4 +1,12 @@
-;This is the simple now playing 'script' for MPC-HC
+;/**
+;* mpc.hc.np.mrc, snippet to display now-playing info for MPC-HC
+;* Released under the terms of MIT license
+;*
+;* https://github.com/mpc-hc/snippets
+;*
+;* Copyright (C) 2012-2013 MPC-HC Team
+;*/
+
 ;In order to use it you need to enable web interface in options first
 ;Type /np to show info in active channel
 
