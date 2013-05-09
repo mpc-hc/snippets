@@ -18,13 +18,13 @@ use LWP::UserAgent;
 
 my $version = "0.3";
 Xchat::register("MPC-HC API", $version, "Displays MPC-HC Player Info!", "");
-Xchat::print('Loaded - MPC-HC API - Use: /np :: Setup: Open MPC-HC -> Options -> Player -> Web Interface -> Listen on port');
+Xchat::print("Loaded - MPC-HC API - Use: /np :: Setup: Open MPC-HC -> Options -> Player -> Web Interface -> Listen on port");
 
 #############################################################################
 
 Xchat::hook_command("np", sub {
 	my $browser	= LWP::UserAgent->new;					# Create a session
-	my $url		= 'http://localhost:13579/info.html';	# HTML file here
+	my $url		= "http://localhost:13579/info.html";	# HTML file here
 	$browser->timeout(3);								# How long to wait
 	$browser->env_proxy;								# Proxy mode
 	my $response = $browser->get($url);					# Get info
