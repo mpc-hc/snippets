@@ -16,7 +16,7 @@ use LWP::UserAgent;
 
 #############################################################################
 
-my $version = "0.3";
+my $version = "0.4";
 Xchat::register("MPC-HC API", $version, "Displays MPC-HC Player Info!", "");
 Xchat::print("Loaded - MPC-HC API - Use: /np :: Setup: Open MPC-HC -> Options -> Player -> Web Interface -> Listen on port");
 
@@ -39,7 +39,7 @@ Xchat::hook_command("np", sub {
 		# Get results into variable
 		my $content = $response->content;
 		my @temptext = split("\n", $content);
-		my $mpchcnp = $temptext[7];
+		my $mpchcnp = $temptext[9];
 		# Remove html, remove whitespace at beginning and end of string and replace entities.
 		$mpchcnp =~ s/<[^>]*>//g;
 		$mpchcnp =~ s/^\s+|\s+$//g;
