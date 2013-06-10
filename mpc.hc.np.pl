@@ -23,31 +23,31 @@ Xchat::print("Loaded - MPC-HC API - Use: /np :: Setup: Open MPC-HC -> Options ->
 #############################################################################
 
 Xchat::hook_command("np", sub {
-  my $browser = LWP::UserAgent->new;                # Create a session
-  my $url     = "http://localhost:13579/info.html"; # HTML file here
-  $browser->timeout(3);                             # How long to wait
-  $browser->env_proxy;                              # Proxy mode
-  my $response = $browser->get($url);               # Get info
+    my $browser = LWP::UserAgent->new;                  # Create a session
+    my $url     = "http://localhost:13579/info.html";   # HTML file here
+    $browser->timeout(3);                               # How long to wait
+    $browser->env_proxy;                                # Proxy mode
+    my $response = $browser->get($url);                 # Get info
 
-  # Report back if it's wrong
-  if (!$response->is_success) {
-    Xchat::command("echo - Could not get: $url. Open MPC-HC -> Options -> Player -> Web Interface -> Listen on port");
-  }
-  else {    # Report back if it's right
-    # Get results into variable
-    my $content = $response->content;
-    my @temptext = split("\n", $content);
-    my $mpchcnp = $temptext[9];
-    # Remove html, remove whitespace at beginning and end of string and replace entities
-    $mpchcnp =~ s/<[^>]*>//g;
-    $mpchcnp =~ s/^\s+|\s+$//g;
-    $mpchcnp =~ s/&laquo;/\xab/g;
-    # Couldn't find proper way to replace it so I'm using plain hyphen as separator ;x
-    $mpchcnp =~ s/&bull;/\x2D/g;
-    $mpchcnp =~ s/&raquo;/\xbb/g;
-    Xchat::command("say $mpchcnp");
-  }
-  return Xchat::EAT_ALL;
+    # Report back if it's wrong
+    if (!$response->is_success) {
+        Xchat::command("echo - Could not get: $url. Open MPC-HC -> Options -> Player -> Web Interface -> Listen on port");
+    }
+    else {  # Report back if it's right
+        # Get results into variable
+        my $content = $response->content;
+        my @temptext = split("\n", $content);
+        my $mpchcnp = $temptext[9];
+        # Remove html, remove whitespace at beginning and end of string and replace entities
+        $mpchcnp =~ s/<[^>]*>//g;
+        $mpchcnp =~ s/^\s+|\s+$//g;
+        $mpchcnp =~ s/&laquo;/\xab/g;
+        # Couldn't find proper way to replace it so I'm using plain hyphen as separator ;x
+        $mpchcnp =~ s/&bull;/\x2D/g;
+        $mpchcnp =~ s/&raquo;/\xbb/g;
+        Xchat::command("say $mpchcnp");
+    }
+    return Xchat::EAT_ALL;
 });
 
 #############################################################################
