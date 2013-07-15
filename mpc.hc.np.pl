@@ -35,7 +35,7 @@ Xchat::hook_command("np", sub {
     }
     else {  # Report back if it's right
         # Get results into variable
-        my $mpchcnp = $response->content;
+        my $mpchcnp = $response->decoded_content;
         $mpchcnp =~ s{.+<p id="mpchc_np">(.+?)</p>.+}{$1}s; # Extract np text from the html
         # Remove whitespace at beginning and end of string and replace entities
         $mpchcnp =~ s/^\s+|\s+$//g;
