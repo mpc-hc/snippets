@@ -25,9 +25,7 @@ alias np {
 }
 
 on *:sockopen:mpchc.np:{
-  sockwrite -n $sockname GET /info.html HTTP/1.1
-  sockwrite -n $sockname Host: $sock($sockname).ip
-  sockwrite -n $sockname $crlf
+  sockwrite $sockname GET /info.html HTTP/1.1 $+ $crlf Host: $sock($sockname).ip $crlf $+ $crlf
 }
 
 on *:sockread:mpchc.np:{
