@@ -34,9 +34,9 @@ MPC_HC_REGEXP = re.compile(r"\<p\ id\=\"mpchc_np\"\>(.*)\<\/p\>")
 def mpc_hc(caller, callee, helper):
     try:
         data = urllib2.urlopen(MPC_HC_URL).read()
-		mpc_hc_np = MPC_HC_REGEXP.findall(data)[0].replace("&laquo;", "«")
-		mpc_hc_np = mpc_hc_np.replace("&raquo;", "»")
-		mpc_hc_np = mpc_hc_np.replace("&bull;", "•")
+	mpc_hc_np = MPC_HC_REGEXP.findall(data)[0].replace("&laquo;", "«")
+	mpc_hc_np = mpc_hc_np.replace("&raquo;", "»")
+	mpc_hc_np = mpc_hc_np.replace("&bull;", "•")
     except:
         xchat.prnt("Error: MPC-HC not detected")
     else:
