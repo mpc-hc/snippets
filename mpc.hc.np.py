@@ -39,6 +39,7 @@ def mpc_hc(caller, callee, helper):
 	mpc_hc_np = mpc_hc_np.replace("&bull;", "•")
     except:
         xchat.prnt("Error: MPC-HC not detected")
+        return xchat.EAT_ALL
     else:
         xchat.command("say %s" % mpc_hc_np)
         return xchat.EAT_ALL
