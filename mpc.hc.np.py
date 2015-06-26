@@ -6,7 +6,7 @@
 #*
 #* https://github.com/mpc-hc/snippets
 #*
-#* Copyright (C) 2013 MPC-HC Team
+#* Copyright (C) 2013, 2015 MPC-HC Team
 #*/
 
 
@@ -32,12 +32,17 @@ MPC_HC_REGEXP = re.compile(r"\<p\ id\=\"mpchc_np\"\>(.*)\<\/p\>")
 
 
 def mpc_hc(caller, callee, helper):
-    data = urllib2.urlopen(MPC_HC_URL).read()
-    mpc_hc_np = MPC_HC_REGEXP.findall(data)[0].replace("&laquo;", "«")
-    mpc_hc_np = mpc_hc_np.replace("&raquo;", "»")
-    mpc_hc_np = mpc_hc_np.replace("&bull;", "•")
-    xchat.command("say %s" % mpc_hc_np)
-    return xchat.EAT_ALL
+    try:
+        data = urllib2.urlopen(MPC_HC_URL).read()
+        mpc_hc_np = MPC_HC_REGEXP.findall(data)[0].replace("&laquo;", "«")
+        mpc_hc_np = mpc_hc_np.replace("&raquo;", "»")
+        mpc_hc_np = mpc_hc_np.replace("&bull;", "•")
+    except:
+        xchat.prnt("Error: MPC-HC not detected")
+        return xchat.EAT_ALL
+    else:
+        xchat.command("say %s" % mpc_hc_np)
+        return xchat.EAT_ALL
 
 xchat.hook_command(
     "np",
